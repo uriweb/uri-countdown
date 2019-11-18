@@ -78,11 +78,6 @@ function uri_countdown_shortcode( $attributes, $content, $shortcode ) {
 add_shortcode( 'uri-countdown', 'uri_countdown_shortcode' );
 
 
-
-// $date_as_words = 'November 14, 2019';
-// $deadline = strtotime( $date_as_words . ' 1:59:59' );
-
-
 /**
  * Wrapper for shortcode_atts to set defaults.
  * @param arr $attributes are the shortcode attributes
@@ -205,6 +200,3 @@ function _uri_countdown_time_left_units( $secs ) {
 		'tense' => ( $secs >= 0 ) ? 'future' : 'past'
 	);
 }
-
-
-
