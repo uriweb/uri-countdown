@@ -1,4 +1,5 @@
 .uri-countdown {
+	position: relative;
 	background: #efefef;
 	margin-bottom: 2rem;
 	padding: .75rem 1.5rem;
@@ -15,4 +16,31 @@
 }
 
 .time-left-unit {
+}
+
+.uri-countdown.dismissed {
+	display: none;
+}
+
+.uri-countdown .dismiss {
+	position: absolute;
+	left: 1rem;
+	top: .75rem;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	padding-left: 16px;
+	padding-bottom: 16px;
+	opacity: .5;
+	background-image: url(../i/dismiss.jpg);
+	background-position: center center;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	border-radius: 8px;
+	transition: opacity .2s ease-in-out;
+}
+
+.uri-countdown .dismiss:hover {
+	opacity: 1;
+	cursor: pointer;
 }

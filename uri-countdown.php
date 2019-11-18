@@ -5,7 +5,7 @@ Plugin URI: https://www.uri.edu
 Description: Creates a countdown widget
 Version: 1.0
 Author: URI Web Communications
-Author URI: 
+Author URI:
 @author: John Pennypacker <jpennypacker@uri.edu>
 @author: Brandon Fuller <bjcfuller@uri.edu>
 */
@@ -37,7 +37,7 @@ function _uri_countdown_cache_buster() {
  * Loads the javascript.
  */
 function uri_countdown_scripts() {
-	return FALSE; // the script is empty; @todo: update front end in real time
+	// return FALSE; // the script is empty; @todo: update front end in real time
 	wp_register_script( 'uri-countdown', plugins_url( '/js/countdown.js', __FILE__ ) );
 	wp_enqueue_script( 'uri-countdown' );
 }
@@ -47,7 +47,7 @@ function uri_countdown_scripts() {
  * Loads the css.
  */
 function uri_countdown_styles() {
-	wp_register_style( 'uri-countdown', plugins_url( '/css/countdown.css', __FILE__ ), false, _uri_countdown_cache_buster() );    
+	wp_register_style( 'uri-countdown', plugins_url( '/css/countdown.css', __FILE__ ), false, _uri_countdown_cache_buster() );
 	wp_enqueue_style( 'uri-countdown' );
 }
 
@@ -56,13 +56,13 @@ function uri_countdown_styles() {
  * The callback for the shortcode.
  */
 function uri_countdown_shortcode( $attributes, $content, $shortcode ) {
-   
+
 	uri_countdown_scripts();
 	uri_countdown_styles();
 
 	// supplement supplied attributes with defaults
 	$attributes = _uri_countdown_atts( $attributes );
-	
+
 	$deadline = strtotime( $attributes['deadline'] );
 	$today = time();
 	$difference = $deadline - $today;
@@ -75,12 +75,12 @@ function uri_countdown_shortcode( $attributes, $content, $shortcode ) {
 	if( ! empty( $message ) ) {
 		$hash = md5($attributes['deadline'] . $attributes['event'] . $attributes['link']);
 		if( ! empty( $attributes['link'] ) ) {
-			$output = '<div class="' . $attributes['class'] . '" data-hash="' . $hash . '"><a href="' . $attributes['link'] . '">' . $message . '</a></div>';
+			$output = '<div class="' . $attributes['class'] . '" data-hash="' . $hash . '"><a href="' . $attributes['link'] . '">' . $message . '</a><div class="dismiss" title="Dismiss">Dismiss message</div></div>';
 		} else {
 			$output = '<div class="' . $attributes['class'] . '" data-hash="' . $hash . '">' . $message . '</div>';
 		}
 	}
-	
+
 
 	return $output;
 
@@ -111,7 +111,7 @@ function _uri_countdown_atts( $attributes ) {
 		$classes[] = $a['class'];
 	}
 	$a['class'] = implode( ' ', $classes );
-	
+
 	return $a;
 
 }
@@ -139,7 +139,7 @@ function _uri_countdown_time_left_in_words( $a, $attributes ) {
 
 	$seconds = $a['seconds'];
 	$second_string = ($seconds == 1 || $seconds == -1) ? 'second' : 'seconds';
-	
+
 	// we're loose with months and years since it's so far away
 	$years = round( $days / 365 );
 	$year_string = $years == 1 ? 'year' : 'years';
@@ -202,7 +202,7 @@ function _uri_countdown_time_left_units( $secs ) {
 	$hours = floor(($seconds - ($days * 86400)) / 3600);
 	$minutes = floor(($seconds - $days * 86400 - $hours * 3600) / 60);
 	$seconds = floor($seconds - ($days * 86400) - ($hours * 3600) - ($minutes * 60));
-	
+
 	return array(
 		'seconds' => $seconds,
 		'minutes' => $minutes,
