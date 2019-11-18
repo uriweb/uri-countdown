@@ -12,16 +12,6 @@ The base syntax for the shortcode is as follows: `[uri-countdown]`.  There are a
 
 All of the options below are optional.
 
-			'deadline' => '',
-			'event' => 'the deadline',
-			'show_expired' => FALSE,
-			'until' => 'until',
-			'is_today' => 'is today',
-			'passed' => 'passed',
-			'link' => '#',
-			'class' => ''
-
-
 	# `deadline` expects the date and time of the deadline. It's parsed by strtotime() so it's fairly flexible
 	# `event` the name of the event that occurs at the end of the countdown
 	# `show_expired` boolean. default: FALSE.  If true, a message will be displayed after the deadline passes
