@@ -19,14 +19,17 @@
 
   function setupCountdown( countdown ) {
 
-    var cvalue, hash;
+    var d, cvalue, hash;
 
-    countdown.querySelector( '.dismiss' ).addEventListener( 'click', dismiss.bind( null, countdown ), false );
+    d = countdown.querySelector( '.dismiss' );
 
+    if ( null === d ) {
+      return;
+    }
+
+    d.addEventListener( 'click', dismiss.bind( null, countdown ), false );
     hash = countdown.getAttribute( 'data-hash' );
     cvalue = getCookie( 'uri-countdown-' + hash );
-
-    console.log( cvalue );
 
     if ( 'dismissed' == cvalue ) {
       dismiss( countdown );
@@ -38,7 +41,6 @@
 
     var hash;
 
-    console.log( 'dismiss' );
     hash = countdown.getAttribute( 'data-hash' );
 
     countdown.classList.add( 'dismissed' );

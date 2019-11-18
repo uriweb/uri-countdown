@@ -75,7 +75,11 @@ function uri_countdown_shortcode( $attributes, $content, $shortcode ) {
 	if( ! empty( $message ) ) {
 		$hash = md5($attributes['deadline'] . $attributes['event'] . $attributes['link']);
 		if( ! empty( $attributes['link'] ) ) {
-			$output = '<div class="' . $attributes['class'] . '" data-hash="' . $hash . '"><a href="' . $attributes['link'] . '">' . $message . '</a><div class="dismiss" title="Dismiss">Dismiss message</div></div>';
+			$output = '<div class="' . $attributes['class'] . '" data-hash="' . $hash . '"><a href="' . $attributes['link'] . '">' . $message . '</a>';
+			if ( $attributes['dismissable'] === TRUE ) {
+				$output .= '<div class="dismiss" title="Dismiss">Dismiss message</div>';
+			}
+			$output .= '</div>';
 		} else {
 			$output = '<div class="' . $attributes['class'] . '" data-hash="' . $hash . '">' . $message . '</div>';
 		}
@@ -99,6 +103,7 @@ function _uri_countdown_atts( $attributes ) {
 			'deadline' => '',
 			'event' => 'the deadline',
 			'show_expired' => FALSE,
+			'dismissable' => TRUE,
 			'until' => 'until',
 			'is_today' => 'is today',
 			'passed' => 'passed',
