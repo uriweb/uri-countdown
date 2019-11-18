@@ -70,7 +70,16 @@ function uri_countdown_shortcode( $attributes, $content, $shortcode ) {
 	$left = _uri_countdown_time_left_units( $difference );
 	$message = _uri_countdown_time_left_in_words( $left, $attributes );
 
-	$output = '<div class="' . $attributes['class'] . '"><a href="' . $attributes['link'] . '">' . $message . '</a></div>';
+	$output = NULL;
+
+	if( ! empty( $message ) ) {
+		if( ! empty( $attributes['link'] ) ) {
+			$output = '<div class="' . $attributes['class'] . '"><a href="' . $attributes['link'] . '">' . $message . '</a></div>';
+		} else {
+			$output = '<div class="' . $attributes['class'] . '">' . $message . '</div>';
+		}
+	}
+	
 
 	return $output;
 
@@ -92,7 +101,7 @@ function _uri_countdown_atts( $attributes ) {
 			'until' => 'until',
 			'is_today' => 'is today',
 			'passed' => 'passed',
-			'link' => '#',
+			'link' => '',
 			'class' => ''
 		), $attributes );
 

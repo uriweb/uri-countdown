@@ -5,11 +5,9 @@
 }
 
 .time-left {
-	font-family: Hind;
 }
 
 .time-left-number, .time-left-event {
-	font-weight: bold;
 }
 
 .time-left-number {
@@ -17,5 +15,4 @@
 }
 
 .time-left-unit {
-	font-style: italic;
 }
