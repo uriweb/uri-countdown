@@ -1,11 +1,24 @@
 .uri-countdown {
 	position: relative;
-	background: #efefef;
 	margin-bottom: 2rem;
 	padding: .75rem 1.5rem;
+	background: #002147;
+	border-radius: 3px;
+	color: #fff;
+	text-align: center;
+	font-family: "Hind", "Arial", sans-serif;
+}
+
+.uri-countdown a {
+	color: #fff;
+}
+
+.uri-countdown a:hover, .uri-countdown a:focus {
+	text-decoration: underline;
 }
 
 .time-left {
+	color: #ffca07;
 }
 
 .time-left-number, .time-left-event {
@@ -13,9 +26,6 @@
 
 .time-left-number {
 	font-family: "Rubik",Hind,Arial,sans-serif;
-}
-
-.time-left-unit {
 }
 
 .uri-countdown.dismissed {
@@ -43,4 +53,53 @@
 .uri-countdown .dismiss:hover {
 	opacity: 1;
 	cursor: pointer;
+}
+
+@keyframes ead-countdown {
+	from { opacity: 0; transform: translateY(-20px); }
+	to { opacity: 1; transform: translateY(0px); }
+}
+.uri-countdown.overlay {
+	box-sizing: border-box;
+	background: rgba(0,0,0,.3);
+	margin-bottom: 0;
+	position: absolute;
+	top: 8px;
+	left: 25px;
+	width: calc( 100% - 50px );
+	z-index: 10;
+	border-radius: 4px;
+	color: #fff;
+	font-size: .9rem;
+	text-align: center;
+	border: 1px solid rgba(255,255,255,.3);
+	opacity: 0;
+	transform: translateY(-20px);
+	animation-name: ead-countdown;
+	animation-duration: 1s;
+	animation-delay: .5s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-in-out;
+}
+
+@supports (backdrop-filter: initial) or (-webkit-backdrop-filter: initial) {
+	.uri-countdown.overlay {
+		-webkit-backdrop-filter: blur(20px) saturate(150%);
+		backdrop-filter: blur(20px) saturate(150%);
+		background: rgba(0,0,0,.4)
+	}
+}
+
+@media screen and (min-width:600px) {
+	.uri-countdown.overlay {
+		top: 50px;
+		font-size: 1rem;
+	}
+}
+@media screen and (min-width:1050px) {
+	.uri-countdown.overlay {
+		width: 1000px;
+		left: calc( 50% - 500px );
+		font-size: 1.1rem;
+	}
 }
