@@ -73,10 +73,11 @@ function uri_countdown_shortcode( $attributes, $content, $shortcode ) {
 	$output = NULL;
 
 	if( ! empty( $message ) ) {
+		$hash = md5($attributes['deadline'] . $attributes['event'] . $attributes['link']);
 		if( ! empty( $attributes['link'] ) ) {
-			$output = '<div class="' . $attributes['class'] . '"><a href="' . $attributes['link'] . '">' . $message . '</a></div>';
+			$output = '<div class="' . $attributes['class'] . '" data-hash="' . $hash . '"><a href="' . $attributes['link'] . '">' . $message . '</a></div>';
 		} else {
-			$output = '<div class="' . $attributes['class'] . '">' . $message . '</div>';
+			$output = '<div class="' . $attributes['class'] . '" data-hash="' . $hash . '">' . $message . '</div>';
 		}
 	}
 	
@@ -155,7 +156,8 @@ function _uri_countdown_time_left_in_words( $a, $attributes ) {
 // 		} else {
 // 			$message = sprintf('<span class="time-left-number">%d</span> %s until <span class="time-left-event">%s</span>.', $seconds, $second_string, $attributes['event'] );
 // 		}
-		$message = sprintf('<span class="time-left-event">%s</span> %s.', $attributes['event'], $attributes['is_today'] );
+		$capitalized_event = ucfirst( $attributes['event'] );
+		$message = sprintf('<span class="time-left-event">%s</span> %s.', $capitalized_event, $attributes['is_today'] );
 	} elseif ( $days > 59 ) {
 		if ( $years > 0 ) {
 			$message = sprintf( '<span class="time-left"><span class="time-left-number">%d</span> <span class="time-left-unit">%s</span></span> %s <span class="time-left-event">%s</span>.', $years, $year_string, $attributes['until'], $attributes['event'] );
