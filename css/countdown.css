@@ -1,5 +1,11 @@
+@keyframes reveal-countdown {
+	from { opacity: 0; transform: translateY(-20px); }
+	to { opacity: 1; transform: translateY(0px); }
+}
+
 .uri-countdown {
 	position: relative;
+	box-sizing: border-box;
 	margin-bottom: 2rem;
 	padding: .75rem 2rem;
 	background: #002147;
@@ -7,6 +13,13 @@
 	color: #fff;
 	text-align: center;
 	font-family: "Hind", "Arial", sans-serif;
+	opacity: 0;
+	transform: translateY(-20px);
+	animation-name: reveal-countdown;
+	animation-duration: 1s;
+	animation-delay: .5s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-in-out;
 }
 
 .uri-countdown a {
@@ -55,12 +68,7 @@
 	cursor: pointer;
 }
 
-@keyframes ead-countdown {
-	from { opacity: 0; transform: translateY(-20px); }
-	to { opacity: 1; transform: translateY(0px); }
-}
 .uri-countdown.overlay {
-	box-sizing: border-box;
 	background: rgba(0,0,0,.3);
 	margin-bottom: 0;
 	position: absolute;
@@ -73,13 +81,6 @@
 	font-size: .9rem;
 	text-align: center;
 	border: 1px solid rgba(255,255,255,.3);
-	opacity: 0;
-	transform: translateY(-20px);
-	animation-name: ead-countdown;
-	animation-duration: 1s;
-	animation-delay: .5s;
-	animation-fill-mode: forwards;
-	animation-timing-function: ease-in-out;
 }
 
 @supports (backdrop-filter: initial) or (-webkit-backdrop-filter: initial) {
